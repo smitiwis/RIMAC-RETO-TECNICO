@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { quoteSchema, type QuoteFormData } from "../schemas/quoteSchema";
-import { useQuoteStore } from "../../../store/useQuoteStore";
+import { useQuoteStore } from "@/store/useQuoteStore";
 
 export function useQuoteForm() {
   const navigate = useNavigate();
@@ -17,13 +17,14 @@ export function useQuoteForm() {
       acceptPrivacy: true,
       acceptCommercial: true,
     },
-    mode: "onChange",
   });
 
   const docType = form.watch("docType");
 
   const setDocType = (val: string) => {
-    form.setValue("docType", val as "DNI" | "RUC", { shouldValidate: true });
+    form.setValue("docType", val as "DNI" | "RUC");
+    form.setValue("dni", "");
+    form.clearErrors("dni");
   };
 
   const onSubmit = (data: QuoteFormData) => {
