@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { quoteSchema, type QuoteFormData } from "../schemas/quoteSchema";
 import { useQuoteStore } from "@/store/useQuoteStore";
+import { fetchUser } from "../services/fetchUser";
 
 export function useQuoteForm() {
   const navigate = useNavigate();
@@ -27,11 +28,17 @@ export function useQuoteForm() {
     form.clearErrors("dni");
   };
 
-  const onSubmit = (data: QuoteFormData) => {
-    setDni(data.dni);
-    setCelular(data.celular);
-    setNombre("Rocío");
-    navigate("/planes");
+  const onSubmit = async (data: QuoteFormData) => {
+    try {
+      const user = await fetchUser();
+      setDni(data.dni);
+      setCelular(data.celular);
+      setNombre(user.name);
+      navigate("/planes");
+    } catch (error) {
+      console.error(error);
+      alert("Hubo un problema al obtener los datos del usuario. Inténtelo de nuevo.");
+    }
   };
 
   return {

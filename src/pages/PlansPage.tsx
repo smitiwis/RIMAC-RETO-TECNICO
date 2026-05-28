@@ -91,7 +91,7 @@ export function PlansPage() {
 
       <div className="text-center md:text-left max-w-2xl mb-12">
         <h1 className="text-3xl md:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight mb-3">
-          {nombre || "Rocío"} ¿Para quién deseas cotizar?
+          {nombre} ¿Para quién deseas cotizar?
         </h1>
         <p className="text-sm font-medium text-brand-gray leading-relaxed">
           Selecciona la opción que se ajuste más a tus necesidades.

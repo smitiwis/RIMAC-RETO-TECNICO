@@ -6,10 +6,10 @@ export function SummaryPage() {
   const navigate = useNavigate();
   const { user, planId, tipoCotizante } = useSummary();
 
-  const clientName = user.nombre || "Rocío";
-  const clientDni = user.dni || "87654321";
-  const clientCelular = user.celular || "987654321";
-  const cotizanteType = tipoCotizante || "Para mí";
+  const clientName = user.nombre;
+  const clientDni = user.dni;
+  const clientCelular = user.celular;
+  const cotizanteType = tipoCotizante;
 
   const getPlanDetails = (id: string | null) => {
     switch (id) {

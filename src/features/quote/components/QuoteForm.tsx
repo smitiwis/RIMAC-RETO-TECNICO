@@ -5,14 +5,14 @@ import {
   Checkbox,
   Input,
   DocumentInputGroup,
-} from "../../../shared/components/ui";
+} from "@/shared/components/ui";
 
 export function QuoteForm() {
   const {
     form: {
       control,
       register,
-      formState: { errors },
+      formState: { errors, isSubmitting },
     },
     docType,
     setDocType,
@@ -92,8 +92,13 @@ export function QuoteForm() {
         </a>
       </div>
 
-      <Button className="w-full md:w-fit" type="submit" variant="primary">
-        Cotiza aquí
+      <Button
+        className="w-full md:w-fit"
+        type="submit"
+        variant="primary"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Cotizando..." : "Cotiza aquí"}
       </Button>
     </form>
   );

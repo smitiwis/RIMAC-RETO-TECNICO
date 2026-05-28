@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query'
-import { quoteService } from '../../services/quoteService'
+import { useQuery } from "@tanstack/react-query";
+import { quoteService } from "../../api/quoteService";
 
 export function usePlans() {
   return useQuery({
-    queryKey: ['planes'],
+    queryKey: ["planes"],
     queryFn: async () => {
-      const { data } = await quoteService.getPlanes()
-      return data.data
+      const { data } = await quoteService.getPlanes();
+      return data.data;
     },
-  })
+  });
 }
