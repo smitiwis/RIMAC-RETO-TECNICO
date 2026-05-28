@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useQuoteStore } from "../store/useQuoteStore";
+import { useQuoteStore } from "@/store/useQuoteStore";
 import { usePlanStore } from "../store/usePlanStore";
 import { ProgressStepper, SelectionCard } from "../shared/components/ui";
 import { PlanCard } from "../features/plans/PlanCard";
@@ -8,7 +8,8 @@ import type { Plan } from "../types";
 
 export function PlansPage() {
   const navigate = useNavigate();
-  const { nombre } = useQuoteStore();
+  const { user } = useQuoteStore();
+  const nombre = user?.name || "Rocío";
   const { setPlanId, setTipoCotizante } = usePlanStore();
 
   const currentStep = 1;

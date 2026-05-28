@@ -1,21 +1,22 @@
-import { create } from 'zustand'
+import { create } from "zustand";
+import type { User } from "@/types";
 
 interface QuoteState {
-  dni: string
-  celular: string
-  nombre: string
-  setDni: (dni: string) => void
-  setCelular: (celular: string) => void
-  setNombre: (nombre: string) => void
-  reset: () => void
+  dni: string;
+  celular: string;
+  user: User | null;
+  setDni: (dni: string) => void;
+  setCelular: (celular: string) => void;
+  setUser: (user: User | null) => void;
+  reset: () => void;
 }
 
-const initialState = { dni: '', celular: '', nombre: '' }
+const initialState = { dni: "", celular: "", user: null };
 
 export const useQuoteStore = create<QuoteState>((set) => ({
   ...initialState,
   setDni: (dni) => set({ dni }),
   setCelular: (celular) => set({ celular }),
-  setNombre: (nombre) => set({ nombre }),
+  setUser: (user) => set({ user }),
   reset: () => set(initialState),
-}))
+}));

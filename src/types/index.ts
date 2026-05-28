@@ -1,7 +1,7 @@
 export interface User {
-  dni: string
-  celular: string
-  nombre: string
+  name: string
+  lastName: string
+  birthDay: string
 }
 
 export interface Plan {

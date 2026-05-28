@@ -4,11 +4,11 @@ import { ProgressStepper, Button } from "../shared/components/ui";
 
 export function SummaryPage() {
   const navigate = useNavigate();
-  const { user, planId, tipoCotizante } = useSummary();
+  const { dni, celular, user, planId, tipoCotizante } = useSummary();
 
-  const clientName = user.nombre;
-  const clientDni = user.dni;
-  const clientCelular = user.celular;
+  const clientName = user ? `${user.name} ${user.lastName}` : "Rocío Miranda Díaz";
+  const clientDni = dni;
+  const clientCelular = celular;
   const cotizanteType = tipoCotizante;
 
   const getPlanDetails = (id: string | null) => {

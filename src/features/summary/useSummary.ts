@@ -1,13 +1,15 @@
-import { useQuoteStore } from '../../store/useQuoteStore'
-import { usePlanStore } from '../../store/usePlanStore'
+import { useQuoteStore } from "@/store/useQuoteStore";
+import { usePlanStore } from "@/store/usePlanStore";
 
 export function useSummary() {
-  const { dni, celular, nombre } = useQuoteStore()
-  const { planId, tipoCotizante } = usePlanStore()
+  const { dni, celular, user } = useQuoteStore();
+  const { planId, tipoCotizante } = usePlanStore();
 
   return {
-    user: { dni, celular, nombre },
+    dni,
+    celular,
+    user,
     planId,
     tipoCotizante,
-  }
+  };
 }
