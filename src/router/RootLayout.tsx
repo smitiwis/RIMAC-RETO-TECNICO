@@ -16,7 +16,7 @@ export function RootLayout() {
     >
       <QueryClientProvider client={queryClient}>
         <RimacHeader />
-        <main>
+        <main className="md:py-8">
           <ContainerMain>
             <Outlet />
           </ContainerMain>

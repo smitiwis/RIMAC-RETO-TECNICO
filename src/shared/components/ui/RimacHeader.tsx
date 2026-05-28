@@ -6,9 +6,9 @@ interface RimacHeaderProps {
 
 export function RimacHeader({ className = "" }: RimacHeaderProps) {
   return (
-    <header className={`w-full h-16 flex items-center  ${className}`}>
+    <header className={`w-full h-14 md:h-16 flex items-center  ${className}`}>
       <ContainerMain className="flex items-center justify-between">
-        <div className="flex items-center">
+        <div className="col-span-2 md:col-span-6 flex items-center">
           <img
             src="/icons/Logo.png"
             alt="RIMAC"
@@ -16,7 +16,7 @@ export function RimacHeader({ className = "" }: RimacHeaderProps) {
           />
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="col-span-2 md:col-span-6 flex justify-end items-center gap-3">
           <span className="hidden md:inline text-xs font-bold text-brand-dark tracking-wide">
             ¡Compra por este medio!
           </span>
