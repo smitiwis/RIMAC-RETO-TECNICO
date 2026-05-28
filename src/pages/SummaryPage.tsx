@@ -1,18 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import { useSummary } from "../features/summary/useSummary";
-import { ProgressStepper, Button } from "../shared/components/ui";
+import { ProgressStepper } from "../shared/components/ui";
 import ContainerMain from "../shared/components/layouts/ContainerMain";
 import { usePlanStore } from "../store/usePlanStore";
 
 export function SummaryPage() {
   const navigate = useNavigate();
-  const { dni, celular, user, tipoCotizante } = useSummary();
+  const { dni, celular, user } = useSummary();
   const { selectedPlanName, selectedPlanPrice } = usePlanStore();
 
-  const clientName = user ? `${user.name} ${user.lastName}` : "Rocío Miranda Díaz";
+  const clientName = user
+    ? `${user.name} ${user.lastName}`
+    : "Rocío Miranda Díaz";
   const clientDni = dni;
   const clientCelular = celular;
-  const cotizanteType = tipoCotizante;
 
   const selectedPlan = {
     name: selectedPlanName || "Plan en Casa y Clínica",
@@ -24,152 +25,88 @@ export function SummaryPage() {
   };
 
   return (
-    <div>
-      <ProgressStepper currentStep={2} onBack={handleBack} />
+    <div className="pb-12 min-h-screen">
+      <ProgressStepper
+        currentStep={2}
+        onBack={handleBack}
+        className="hidden md:block"
+      />
 
-      <ContainerMain className="md:py-8">
-        <div className="grid grid-cols-4 md:grid-cols-12 gap-6 w-full">
-          <div className="col-span-4 md:col-span-12">
-            <div className="mb-8 hidden md:block">
+      <ContainerMain className="py-8 md:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 w-full gap-6">
+          <div className="col-span-4 md:col-start-2 md:col-span-10 w-full overflow-visible">
+            <div className="mb-6 hidden md:block">
               <button
                 onClick={handleBack}
-                className="inline-flex items-center gap-2 group text-xs font-bold text-brand-dark/80 hover:text-brand-red transition-all duration-200"
+                className="inline-flex items-center gap-2 group text-xs font-bold text-brand-blue hover:text-brand-red transition-all duration-200 cursor-pointer"
               >
-                <div className="w-6 h-6 rounded-full border border-brand-dark/40 flex items-center justify-center group-hover:border-brand-red group-hover:bg-brand-red/5 transition-all duration-200">
-                  <svg
-                    className="w-3.5 h-3.5 fill-none stroke-current stroke-2.5"
-                    viewBox="0 0 24 24"
-                  >
-                    <polyline points="15 18 9 12 15 6" />
-                  </svg>
-                </div>
-                <span className="tracking-wide">Volver</span>
+                <img
+                  src="/icons/Icon-button.png"
+                  alt="Volver"
+                  className="w-6 h-6 object-contain"
+                />
+                <span className="tracking-wide font-extrabold">Volver</span>
               </button>
             </div>
 
-            <div className="mb-10 text-center md:text-left">
-              <h1 className="text-3xl md:text-4xl font-extrabold text-brand-dark tracking-tight leading-tight">
-                Resumen de tu cotización
+            <div className="mb-8 text-left">
+              <h1 className="text-center md:text-left text-3xl md:text-[40px] font-bold text-brand-navy tracking-tight leading-tight">
+                Resumen del seguro
               </h1>
-              <p className="text-sm font-medium text-brand-gray mt-2 leading-relaxed">
-                Tu solicitud ha sido procesada con éxito. Revisa el detalle a
-                continuación:
-              </p>
             </div>
 
-            <div className="max-w-2xl mx-auto md:mx-0 bg-white rounded-3xl border border-brand-border/30 shadow-xl shadow-brand-dark/5 overflow-hidden animate-fade-in">
-              <div className="bg-[#EEF2FF] p-6 border-b border-brand-border/20 flex items-center gap-4">
-                <div className="w-10 h-10 rounded-full bg-brand-success flex items-center justify-center text-white shadow-sm shrink-0 animate-bounce">
-                  <svg
-                    className="w-5 h-5 fill-none stroke-current stroke-3"
-                    viewBox="0 0 24 24"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                </div>
+            <div className="w-full  bg-white rounded-3xl border border-brand-border-light p-6 md:p-10 shadow-[0px_1px_32px_0px_rgba(174,172,243,0.2)]">
+              <div className="space-y-4">
                 <div>
-                  <span className="block text-[10px] font-black uppercase tracking-wider text-[#4F46E5]">
-                    Cotización Exitosa
+                  <span className="text-[10px] font-bold tracking-widest text-brand-navy uppercase block mb-2">
+                    Precios calculados para:
                   </span>
-                  <span className="text-sm font-bold text-brand-dark">
-                    ¡Gracias por confiar en RIMAC!
-                  </span>
-                </div>
-              </div>
 
-              <div className="p-8 space-y-8">
-                <div>
-                  <h3 className="text-xs font-black uppercase text-brand-gray tracking-widest mb-4">
-                    Datos del Asegurado
-                  </h3>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="bg-brand-light-gray/60 p-4 rounded-xl">
-                      <span className="block text-[10px] font-bold text-brand-gray uppercase">
-                        Nombre Completo
-                      </span>
-                      <span className="text-sm font-extrabold text-brand-dark mt-0.5 block">
-                        {clientName}
-                      </span>
-                    </div>
-                    <div className="bg-brand-light-gray/60 p-4 rounded-xl">
-                      <span className="block text-[10px] font-bold text-brand-gray uppercase">
-                        Tipo Cotizante
-                      </span>
-                      <span className="text-sm font-extrabold text-brand-dark mt-0.5 block">
-                        {cotizanteType}
-                      </span>
-                    </div>
-                    <div className="bg-brand-light-gray/60 p-4 rounded-xl">
-                      <span className="block text-[10px] font-bold text-brand-gray uppercase">
-                        DNI
-                      </span>
-                      <span className="text-sm font-extrabold text-brand-dark mt-0.5 block">
-                        {clientDni}
-                      </span>
-                    </div>
-                    <div className="bg-brand-light-gray/60 p-4 rounded-xl">
-                      <span className="block text-[10px] font-bold text-brand-gray uppercase">
-                        Celular
-                      </span>
-                      <span className="text-sm font-extrabold text-brand-dark mt-0.5 block">
-                        {clientCelular}
-                      </span>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <svg
+                      className="w-6 h-6 text-brand-navy shrink-0"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M9 12a4 4 0 100-8 4 4 0 000 8zm5.88-3.08a4.996 4.996 0 000-5.84A4 4 0 0118 8a4 4 0 01-3.12.92zM9 14c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm7.25.07c1.33.9 2.75 2.11 2.75 3.93v2H23v-2c0-2.29-3.92-3.72-6.75-3.93z" />
+                    </svg>
+                    <span className="text-xl md:text-xl font-extrabold text-brand-navy">
+                      {clientName}
+                    </span>
                   </div>
                 </div>
 
-                <div className="border-t border-brand-border/30 w-full" />
+                <div className="w-full border-t border-brand-border-light my-6" />
 
-                <div>
-                  <h3 className="text-xs font-black uppercase text-brand-gray tracking-widest mb-4">
-                    Plan Seleccionado
-                  </h3>
-                  <div className="bg-[#FFF2F4] p-5 rounded-2xl border border-brand-red/10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-white border border-brand-red/10 flex items-center justify-center shrink-0">
-                        <img
-                          src="/icons/IcHomeLight.png"
-                          alt="Plan"
-                          className="w-12 h-12 object-contain"
-                        />
-                      </div>
-                      <div className="text-left">
-                        <span className="text-base font-extrabold text-brand-dark block">
-                          {selectedPlan.name}
-                        </span>
-                        <span className="text-xs font-bold text-brand-gray block mt-0.5">
-                          Seguro de Salud Flexible
-                        </span>
-                      </div>
-                    </div>
-                    <div className="text-left sm:text-right">
-                      <span className="block text-[10px] font-bold text-brand-gray uppercase">
-                        Precio Mensual
-                      </span>
+                <div className="space-y-6">
+                  <div className="space-y-1.5">
+                    <h4 className="text-base font-bold text-brand-summary">
+                      Responsable de pago
+                    </h4>
+                    <p className="text-sm font-[14px] text-brand-summary leading-none">
+                      DNI: {clientDni}
+                    </p>
+                    <p className="text-sm font-[14px] text-brand-summary leading-none">
+                      Celular: {clientCelular}
+                    </p>
+                  </div>
 
-                      <span className="text-xl font-extrabold text-brand-dark mt-0.5 block">
-                        ${selectedPlan.price % 1 === 0 ? selectedPlan.price : selectedPlan.price.toFixed(2)}{" "}
-                        <span className="text-xs font-medium text-brand-gray">
-                          / mes
-                        </span>
-                      </span>
-                    </div>
+                  <div className="space-y-1.5">
+                    <h4 className="text-base font-bold text-brand-summary">
+                      Plan elegido
+                    </h4>
+                    <p className="text-sm font-[14px] text-brand-summary leading-none">
+                      {selectedPlan.name}
+                    </p>
+                    <p className="text-sm font-[14px] text-brand-summary leading-none">
+                      Costo del Plan: $
+                      {selectedPlan.price % 1 === 0
+                        ? selectedPlan.price
+                        : selectedPlan.price.toFixed(2)}{" "}
+                      al mes
+                    </p>
                   </div>
                 </div>
-              </div>
-
-              <div className="bg-brand-light-gray/40 px-8 py-5 border-t border-brand-border/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="text-xs font-bold text-brand-gray text-center sm:text-left">
-                  ¿Deseas realizar una nueva cotización?
-                </span>
-                <Button
-                  variant="outline"
-                  onClick={() => {
-                    navigate("/");
-                  }}
-                >
-                  Nueva Cotización
-                </Button>
               </div>
             </div>
           </div>

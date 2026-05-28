@@ -25,7 +25,7 @@ export function PlanCard({
 
   return (
     <div
-      className={`relative flex flex-col justify-between w-full max-w-73 h-171 pt-10 pb-12 px-8 bg-white rounded-3xl border transition-all duration-300 shadow-[0px_1px_32px_0px_rgba(174,172,243,0.35)] ${
+      className={`font-lato relative flex flex-col justify-between w-full max-w-73 h-171 pt-10 pb-12 px-8 bg-white rounded-3xl border transition-all duration-300 shadow-[0px_1px_32px_0px_rgba(174,172,243,0.35)] ${
         selected
           ? "border-brand-dark ring-1 ring-brand-dark/10"
           : "border-[#E4E8F7]"

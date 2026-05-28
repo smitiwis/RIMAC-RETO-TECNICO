@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuoteStore } from "@/store/useQuoteStore";
 import { usePlanStore } from "../store/usePlanStore";
@@ -26,6 +26,14 @@ export function PlansPage() {
   const [option, setOption] = useState<"me" | "other" | null>(null);
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { data: rawPlans = [], isLoading, isError } = usePlans(option !== null);
 
@@ -139,9 +147,13 @@ export function PlansPage() {
                       <div className="col-span-4 md:col-start-2 md:col-span-10 w-full overflow-visible">
                         <div
                           className="flex md:grid md:grid-cols-3 gap-4 md:gap-8 transition-transform duration-500 ease-out w-full md:transform-none md:justify-items-center"
-                          style={{
-                            transform: `translateX(calc(50vw - 146px - ${currentSlideIndex * (292 + 16)}px))`,
-                          }}
+                          style={
+                            isMobile
+                              ? {
+                                  transform: `translateX(calc(50vw - 146px - ${currentSlideIndex * (292 + 16)}px))`,
+                                }
+                              : undefined
+                          }
                         >
                           {plans.map((plan) => {
                             const originalPlan = rawPlans.find(
