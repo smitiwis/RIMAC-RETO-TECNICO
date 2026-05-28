@@ -1,13 +1,19 @@
+import ContainerMain from "../layouts/ContainerMain";
+
 interface RimacHeaderProps {
-  className?: string
+  className?: string;
 }
 
-export function RimacHeader({ className = '' }: RimacHeaderProps) {
+export function RimacHeader({ className = "" }: RimacHeaderProps) {
   return (
-    <header className={`w-full bg-white border-b border-brand-border/10 py-4 px-6 md:px-12 ${className}`}>
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+    <header className={`w-full h-16 flex items-center  ${className}`}>
+      <ContainerMain className="flex items-center justify-between">
         <div className="flex items-center">
-          <img src="/icons/Logo.png" alt="RIMAC" className="h-4 md:h-5 w-auto object-contain" />
+          <img
+            src="/icons/Logo.png"
+            alt="RIMAC"
+            className="h-8 md:h-10 w-auto object-contain"
+          />
         </div>
 
         <div className="flex items-center gap-3">
@@ -18,13 +24,17 @@ export function RimacHeader({ className = '' }: RimacHeaderProps) {
             href="tel:014116001"
             className="flex items-center gap-1.5 text-brand-dark hover:text-brand-red transition-colors duration-200"
           >
-            <img src="/icons/Vector.png" alt="Teléfono" className="w-4 h-4 object-contain" />
+            <img
+              src="/icons/Vector.png"
+              alt="Teléfono"
+              className="w-4 h-4 object-contain"
+            />
             <span className="text-sm font-extrabold tracking-tight">
               (01) 411 6001
             </span>
           </a>
         </div>
-      </div>
+      </ContainerMain>
     </header>
-  )
+  );
 }

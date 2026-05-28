@@ -1,23 +1,29 @@
-import type { Plan } from '../../types'
-import { Button } from '../../shared/components/Button'
+import type { Plan } from "../../types";
+import { Button } from "../../shared/components/ui/Button";
 
 interface PlanCardProps {
-  plan: Plan
-  selected: boolean
-  onSelect: () => void
-  recommended?: boolean
-  className?: string
+  plan: Plan;
+  selected: boolean;
+  onSelect: () => void;
+  recommended?: boolean;
+  className?: string;
 }
 
-export function PlanCard({ plan, selected, onSelect, recommended = false, className = '' }: PlanCardProps) {
-  const isClinic = plan.nombre.toLowerCase().includes('clínica')
+export function PlanCard({
+  plan,
+  selected,
+  onSelect,
+  recommended = false,
+  className = "",
+}: PlanCardProps) {
+  const isClinic = plan.nombre.toLowerCase().includes("clínica");
 
   return (
     <div
       className={`relative flex flex-col justify-between w-[288px] h-[687px] pt-[68px] pb-[48px] px-[32px] bg-white rounded-[24px] border transition-all duration-300 shadow-[0px_1px_32px_0px_rgba(174,172,243,0.35)] ${
         selected
-          ? 'border-brand-dark ring-1 ring-brand-dark/10'
-          : 'border-[#E4E8F7]'
+          ? "border-brand-dark ring-1 ring-brand-dark/10"
+          : "border-[#E4E8F7]"
       } ${className}`}
     >
       {recommended && (
@@ -37,9 +43,17 @@ export function PlanCard({ plan, selected, onSelect, recommended = false, classN
           </div>
           <div className="text-brand-red">
             {isClinic ? (
-              <img src="/icons/IcHospitalLight.png" alt="Plan Hospital" className="w-12 h-12 object-contain" />
+              <img
+                src="/icons/IcHospitalLight.png"
+                alt="Plan Hospital"
+                className="w-12 h-12 object-contain"
+              />
             ) : (
-              <img src="/icons/IcHomeLight.png" alt="Plan Home" className="w-12 h-12 object-contain" />
+              <img
+                src="/icons/IcHomeLight.png"
+                alt="Plan Home"
+                className="w-12 h-12 object-contain"
+              />
             )}
           </div>
         </div>
@@ -49,7 +63,9 @@ export function PlanCard({ plan, selected, onSelect, recommended = false, classN
             Costo del plan
           </span>
           <div className="flex items-baseline gap-1 mt-0.5">
-            <span className="text-2xl font-extrabold text-brand-dark">${plan.precio}</span>
+            <span className="text-2xl font-extrabold text-brand-dark">
+              ${plan.precio}
+            </span>
             <span className="text-xs font-bold text-brand-gray">al mes</span>
           </div>
         </div>
@@ -70,13 +86,13 @@ export function PlanCard({ plan, selected, onSelect, recommended = false, classN
 
       <div className="mt-4">
         <Button
-          variant={selected ? 'primary' : 'secondary'}
+          variant={selected ? "primary" : "secondary"}
           fullWidth
           onClick={onSelect}
         >
-          {selected ? 'Plan Seleccionado' : 'Seleccionar Plan'}
+          {selected ? "Plan Seleccionado" : "Seleccionar Plan"}
         </Button>
       </div>
     </div>
-  )
+  );
 }

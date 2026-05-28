@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
-
 @import "tailwindcss";
+
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
 
 @theme {
   --font-sans: 'Plus Jakarta Sans', sans-serif;
@@ -24,3 +30,5 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
