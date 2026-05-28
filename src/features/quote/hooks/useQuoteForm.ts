@@ -7,7 +7,7 @@ import { fetchUser } from "../services/fetchUser";
 
 export function useQuoteForm() {
   const navigate = useNavigate();
-  const { setDni, setCelular, setUser } = useQuoteStore();
+  const { setDni, setDocType: setStoreDocType, setCelular, setUser } = useQuoteStore();
 
   const form = useForm<QuoteFormData>({
     resolver: zodResolver(quoteSchema),
@@ -32,6 +32,7 @@ export function useQuoteForm() {
     try {
       const fetchedUser = await fetchUser();
       setDni(data.dni);
+      setStoreDocType(data.docType);
       setCelular(data.celular);
       setUser(fetchedUser);
       navigate("/planes");

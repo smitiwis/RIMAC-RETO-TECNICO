@@ -6,13 +6,14 @@ import { usePlanStore } from "../store/usePlanStore";
 
 export function SummaryPage() {
   const navigate = useNavigate();
-  const { dni, celular, user } = useSummary();
+  const { dni, docType, celular, user } = useSummary();
   const { selectedPlanName, selectedPlanPrice } = usePlanStore();
 
   const clientName = user
     ? `${user.name} ${user.lastName}`
     : "Rocío Miranda Díaz";
   const clientDni = dni;
+  const clientDocType = docType || "DNI";
   const clientCelular = celular;
 
   const selectedPlan = {
@@ -84,7 +85,7 @@ export function SummaryPage() {
                       Responsable de pago
                     </h4>
                     <p className="text-sm font-[14px] text-brand-summary leading-none">
-                      DNI: {clientDni}
+                      {clientDocType}: {clientDni}
                     </p>
                     <p className="text-sm font-[14px] text-brand-summary leading-none">
                       Celular: {clientCelular}
