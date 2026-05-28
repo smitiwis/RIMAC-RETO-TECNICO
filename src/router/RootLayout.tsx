@@ -1,18 +1,19 @@
-import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Suspense, useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "../api/queryClient";
 import { RimacHeader } from "../shared/components/ui";
+import SpinerMain from "@/shared/components/ui/SpinerMain";
 
 export function RootLayout() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
+
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-brand-light-gray flex items-center justify-center">
-          <div className="w-10 h-10 border-4 border-brand-red border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      }
-    >
+    <Suspense fallback={<SpinerMain />}>
       <QueryClientProvider client={queryClient}>
         <RimacHeader />
         <main>

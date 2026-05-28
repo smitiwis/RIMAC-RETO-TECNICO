@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import ContainerMain from "../layouts/ContainerMain";
 
 interface RimacHeaderProps {
@@ -9,11 +10,13 @@ export function RimacHeader({ className = "" }: RimacHeaderProps) {
     <header className={`w-full h-14 md:h-16 flex items-center  ${className}`}>
       <ContainerMain className="flex items-center justify-between">
         <div className="col-span-2 md:col-span-6 flex items-center">
-          <img
-            src="/icons/Logo.png"
-            alt="RIMAC"
-            className="h-8 md:h-10 w-auto object-contain"
-          />
+          <Link to="/" className="cursor-pointer block">
+            <img
+              src="/icons/Logo.png"
+              alt="RIMAC"
+              className="h-8 md:h-10 w-auto object-contain"
+            />
+          </Link>
         </div>
 
         <div className="col-span-2 md:col-span-6 flex justify-end items-center gap-3">
