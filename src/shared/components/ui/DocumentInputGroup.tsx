@@ -40,7 +40,6 @@ export function DocumentInputGroup({
           >
             <option value="DNI">DNI</option>
             <option value="RUC">RUC</option>
-            <option value="CE">CE</option>
           </select>
           <div className="absolute right-3 pointer-events-none flex items-center text-brand-dark">
             <svg

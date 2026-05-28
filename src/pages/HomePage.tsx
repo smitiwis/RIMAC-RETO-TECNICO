@@ -1,52 +1,9 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { quoteSchema, type QuoteFormData } from "../features/quote/quoteSchema";
-import { useQuoteStore } from "../store/useQuoteStore";
-
-import {
-  Badge,
-  Button,
-  Checkbox,
-  Input,
-  DocumentInputGroup,
-} from "../shared/components/ui";
+import { Badge } from "../shared/components/ui";
+import { QuoteForm } from "../features/quote/components/QuoteForm";
 
 export function HomePage() {
-  const navigate = useNavigate();
-  const { setDni, setCelular, setNombre } = useQuoteStore();
-
-  const {
-    control,
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm<QuoteFormData>({
-    resolver: zodResolver(quoteSchema),
-    defaultValues: { dni: "", celular: "" },
-    mode: "onChange",
-  });
-
-  const [acceptPrivacy, setAcceptPrivacy] = useState(true);
-  const [acceptCommercial, setAcceptCommercial] = useState(true);
-
-  const [docType, setDocType] = useState("DNI");
-
-  const onSubmit = (data: QuoteFormData) => {
-    if (!acceptPrivacy || !acceptCommercial) {
-      alert("Debe aceptar las políticas para cotizar.");
-      return;
-    }
-    setDni(data.dni);
-    setCelular(data.celular);
-    setNombre("Rocío");
-
-    navigate("/planes");
-  };
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-33 items-center justify-self-center">
+    <div className="py-4 md:py-6 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-33 items-center justify-self-center">
       <div className="hidden md:block relative">
         <div className="rounded-[40px] overflow-hidden shadow-2xl shadow-brand-dark/5 bg-white border border-brand-border/20">
           <img
@@ -84,54 +41,7 @@ export function HomePage() {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
-          <div className="flex flex-col gap-4">
-            <Controller
-              name="dni"
-              control={control}
-              render={({ field }) => (
-                <DocumentInputGroup
-                  label="Documento"
-                  docType={docType}
-                  docNumber={field.value}
-                  onDocTypeChange={setDocType}
-                  onDocNumberChange={field.onChange}
-                  error={errors.dni?.message}
-                />
-              )}
-            />
-
-            <Input
-              label="Celular"
-              placeholder="987654321"
-              error={errors.celular?.message}
-              {...register("celular")}
-            />
-          </div>
-
-          <div className="flex flex-col gap-3.5">
-            <Checkbox
-              label="Acepto la Política de Privacidad"
-              checked={acceptPrivacy}
-              onToggle={setAcceptPrivacy}
-            />
-            <Checkbox
-              label="Acepto la Política Comunicaciones Comerciales"
-              checked={acceptCommercial}
-              onToggle={setAcceptCommercial}
-            />
-            <a
-              href="#terminos"
-              className="text-xs font-bold text-brand-dark underline hover:text-brand-red transition-colors duration-200 self-start"
-            >
-              Aplican Términos y Condiciones.
-            </a>
-          </div>
-
-          <Button className="w-full md:w-fit" type="submit" variant="primary">
-            Cotiza aquí
-          </Button>
-        </form>
+        <QuoteForm />
       </div>
     </div>
   );
