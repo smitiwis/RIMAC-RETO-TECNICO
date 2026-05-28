@@ -11,9 +11,10 @@
   --color-brand-dark: #03050F;
   --color-brand-dark-text: #0A051E;
   --color-brand-gray: #676F8F;
-  --color-brand-light-gray: #F8F9FC;
+  --color-brand-light-gray: #F8F9FF;
   --color-brand-border: #5E6488;
   --color-brand-success: #3AC759;
+  --color-brand-divider: #CCD1EE;
 }
 
 body {
