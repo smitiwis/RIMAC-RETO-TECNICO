@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "../api/queryClient";
 import { RimacHeader } from "../shared/components/ui";
-import ContainerMain from "../shared/components/layouts/ContainerMain";
 
 export function RootLayout() {
   return (
@@ -16,10 +15,8 @@ export function RootLayout() {
     >
       <QueryClientProvider client={queryClient}>
         <RimacHeader />
-        <main className="md:py-8">
-          <ContainerMain>
-            <Outlet />
-          </ContainerMain>
+        <main>
+          <Outlet />
         </main>
       </QueryClientProvider>
     </Suspense>

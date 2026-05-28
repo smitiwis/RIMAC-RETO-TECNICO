@@ -19,8 +19,10 @@
   --color-brand-gray: #676F8F;
   --color-brand-light-gray: #F8F9FF;
   --color-brand-border: #5E6488;
-  --color-brand-success: #3AC759;
+  --color-brand-success: #389E0D;
   --color-brand-divider: #CCD1EE;
+  --color-brand-blue: #4F4FFF;
+  --color-brand-gray-step: #7981B2;
 }
 
 body {

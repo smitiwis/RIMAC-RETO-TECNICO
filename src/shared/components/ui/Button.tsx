@@ -13,15 +13,15 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "px-10 cursor-pointer h-16 font-semibold inline-flex items-center justify-center text-[20px] transition-all duration-350 active:scale-[0.96] disabled:opacity-50 disabled:pointer-events-none";
+    "cursor-pointer h-16 font-semibold inline-flex items-center justify-center  transition-all duration-350 active:scale-[0.96] disabled:opacity-50 disabled:pointer-events-none";
 
   const variants = {
     primary:
-      "bg-brand-dark hover:bg-brand-dark/90 text-white rounded-full py-3.5  shadow-md shadow-brand-dark/10 hover:shadow-lg",
+      "text-[20px] px-10 bg-brand-dark hover:bg-brand-dark/90 text-white rounded-full py-3.5 shadow-md shadow-brand-dark/10 hover:shadow-lg",
     secondary:
-      "bg-brand-red hover:bg-brand-red-dark text-white rounded-full py-3  shadow-md shadow-brand-red/10",
+      "text-[18px] px-6 bg-brand-red hover:bg-brand-red-dark text-white rounded-full py-3 shadow-md shadow-brand-red/10",
     outline:
-      "border-2 border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-white rounded-full py-2.5 ",
+      "text-[20px] px-10 border-2 border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-white rounded-full py-2.5 ",
   };
 
   return (

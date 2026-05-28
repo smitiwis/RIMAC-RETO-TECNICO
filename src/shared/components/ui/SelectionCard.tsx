@@ -1,30 +1,32 @@
-interface SelectionCardProps {
-  title: string
-  description: string
-  icon: 'me' | 'other'
-  selected: boolean
-  onSelect: () => void
-  className?: string
-}
+import type { SelectionCardProps } from "../types/card-shared";
 
-export function SelectionCard({ title, description, icon, selected, onSelect, className = '' }: SelectionCardProps) {
+export function SelectionCard({
+  title,
+  description,
+  icon,
+  selected,
+  onSelect,
+  className = "",
+}: SelectionCardProps) {
   return (
     <div
       role="button"
       tabIndex={0}
       onClick={onSelect}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          onSelect()
+        if (e.key === "Enter" || e.key === " ") {
+          onSelect();
         }
       }}
-      className={`relative flex flex-col justify-between p-6 w-full md:max-w-xs text-left bg-white rounded-2xl border-2 transition-all duration-300 cursor-pointer outline-none select-none ${
-        selected
-          ? 'border-brand-dark shadow-md shadow-brand-dark/5'
-          : 'border-transparent shadow-sm hover:border-brand-dark/40 hover:shadow-md'
-      } ${className}`}
+      style={{ boxShadow: "0px 1px 32px 0px #AEACF359" }}
+      className={`space-y-2 relative flex flex-col justify-between pt-4 pb-10 px-6 w-full md:max-w-[256px] text-left bg-white rounded-2xl border-2 transition-all duration-300 cursor-pointer outline-none select-none 
+ ${
+   selected
+     ? "border-brand-dark shadow-md shadow-brand-dark/5"
+     : "border-transparent shadow-sm hover:border-brand-dark/20 hover:shadow-md"
+ } ${className}`}
     >
-      <div className="absolute top-4 right-4">
+      <div className="mb-0 flex justify-end">
         {selected ? (
           <div className="w-6 h-6 rounded-full bg-brand-success flex items-center justify-center text-white shadow-sm transition-all duration-200">
             <svg
@@ -35,22 +37,30 @@ export function SelectionCard({ title, description, icon, selected, onSelect, cl
             </svg>
           </div>
         ) : (
-          <div className="w-6 h-6 rounded-full border-2 border-brand-border bg-white transition-all duration-200" />
+          <div className="w-6 h-6 rounded-full border border-[#A9AFD9] bg-white transition-all duration-200" />
         )}
       </div>
 
-      <div className="mb-8">
-        {icon === 'me' ? (
-          <img src="/icons/IcProtectionLight.png" alt="Para mí" className="w-12 h-12 object-contain" />
-        ) : (
-          <img src="/icons/IcAddUserLight.png" alt="Para alguien más" className="w-12 h-12 object-contain" />
-        )}
-      </div>
+      {icon === "me" ? (
+        <img
+          src="/icons/IcProtectionLight.png"
+          alt="Para mí"
+          className="w-12 h-12 object-contain"
+        />
+      ) : (
+        <img
+          src="/icons/IcAddUserLight.png"
+          alt="Para alguien más"
+          className="w-12 h-12 object-contain"
+        />
+      )}
 
-      <div>
-        <h3 className="text-lg font-bold text-brand-dark mb-2 tracking-tight">{title}</h3>
-        <p className="text-xs font-medium text-brand-gray leading-relaxed">{description}</p>
-      </div>
+      <h3 className="text-lg font-bold text-brand-dark  tracking-tight">
+        {title}
+      </h3>
+      <p className="text-xs font-medium text-brand-gray leading-relaxed">
+        {description}
+      </p>
     </div>
-  )
+  );
 }
