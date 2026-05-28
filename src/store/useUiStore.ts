@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-type Step = 'landing' | 'plans' | 'summary'
+export type Step = 'landing' | 'plans' | 'summary'
 
 interface UiState {
   step: Step
