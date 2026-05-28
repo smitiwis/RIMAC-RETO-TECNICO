@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 import type { User } from "@/types";
 
 interface QuoteState {
@@ -13,10 +14,17 @@ interface QuoteState {
 
 const initialState = { dni: "", celular: "", user: null };
 
-export const useQuoteStore = create<QuoteState>((set) => ({
-  ...initialState,
-  setDni: (dni) => set({ dni }),
-  setCelular: (celular) => set({ celular }),
-  setUser: (user) => set({ user }),
-  reset: () => set(initialState),
-}));
+export const useQuoteStore = create<QuoteState>()(
+  persist(
+    (set) => ({
+      ...initialState,
+      setDni: (dni) => set({ dni }),
+      setCelular: (celular) => set({ celular }),
+      setUser: (user) => set({ user }),
+      reset: () => set(initialState),
+    }),
+    {
+      name: "quote-store",
+    }
+  )
+);

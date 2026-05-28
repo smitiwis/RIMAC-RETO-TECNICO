@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 interface PlanState {
   planId: string | null
@@ -19,11 +20,18 @@ const initialState = {
   selectedPlanName: null,
 }
 
-export const usePlanStore = create<PlanState>((set) => ({
-  ...initialState,
-  setPlanId: (planId) => set({ planId }),
-  setTipoCotizante: (tipoCotizante) => set({ tipoCotizante }),
-  setSelectedPlanPrice: (selectedPlanPrice) => set({ selectedPlanPrice }),
-  setSelectedPlanName: (selectedPlanName) => set({ selectedPlanName }),
-  reset: () => set(initialState),
-}))
+export const usePlanStore = create<PlanState>()(
+  persist(
+    (set) => ({
+      ...initialState,
+      setPlanId: (planId) => set({ planId }),
+      setTipoCotizante: (tipoCotizante) => set({ tipoCotizante }),
+      setSelectedPlanPrice: (selectedPlanPrice) => set({ selectedPlanPrice }),
+      setSelectedPlanName: (selectedPlanName) => set({ selectedPlanName }),
+      reset: () => set(initialState),
+    }),
+    {
+      name: 'plan-store',
+    }
+  )
+)

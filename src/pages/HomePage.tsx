@@ -1,8 +1,19 @@
+import { useEffect } from "react";
 import { Badge } from "../shared/components/ui";
 import { QuoteForm } from "../features/quote/components/QuoteForm";
 import ContainerMain from "@/shared/components/layouts/ContainerMain";
+import { useQuoteStore } from "../store/useQuoteStore";
+import { usePlanStore } from "../store/usePlanStore";
 
 export function HomePage() {
+  const resetQuote = useQuoteStore((state) => state.reset);
+  const resetPlan = usePlanStore((state) => state.reset);
+
+  useEffect(() => {
+    resetQuote();
+    resetPlan();
+  }, [resetQuote, resetPlan]);
+
   return (
     <ContainerMain className="md:py-8">
       <div className="grid grid-cols-4 md:grid-cols-12 gap-6">
